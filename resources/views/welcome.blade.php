@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}">
 
         <!-- Styles -->
         <style>
@@ -64,6 +65,12 @@
         </style>
     </head>
     <body>
+    <main id="app">
+        <header>
+            <router-view/>
+        </header>
+
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -96,5 +103,9 @@
                 </div>
             </div>
         </div>
+    </main>
+    <footer>
+        <script src="{{ asset('js/app.js') }}"></script>
+    </footer>
     </body>
 </html>
