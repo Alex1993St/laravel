@@ -11,68 +11,53 @@
 
                         <div class="card-body">
                             <ValidationObserver v-slot="{ handleSubmit }">
-                            <form method="POST" action="login" @submit.prevent="handleSubmit(onSubmit)">
-                                <!-- csrf-->
-                                <ValidationProvider name="email"
-                                    rules="required|min:10|max|email"
-                                    :bails="false"
-                                    v-slot="{ errors }"
-                                >
+                                <form method="POST" action="login" @submit.prevent="handleSubmit(onSubmit)">
+                                    <!-- csrf-->
+                                    <ValidationProvider name="Email"  rules="required|min:4|maxletter|email"  :bails="false"  v-slot="{ errors }">
+                                        <div class="form-group row">
+                                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+
+                                            <div class="col-md-6">
+                                                <input id="email" type="email" v-model="email" class="form-control"  name="email" required autocomplete="email">
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li v-for="error in errors">{{ error }}</li>
+                                        </ul>
+                                    </ValidationProvider>
+
+                                    <ValidationProvider name="Password" :rules="{ required: true,  min: 3, max: 15 }" v-slot="{ errors }">
+                                        <div class="form-group row">
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                            <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control" v-model="password" required autocomplete="current-password">
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li v-for="error in errors">{{ error }}</li>
+                                        </ul>
+                                    </ValidationProvider>
+
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                        <div class="col-md-6 offset-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="remember" name="remember" id="remember">
 
-                                        <div class="col-md-6">
-                                            <input id="email" type="email" v-model="email" class="form-control"  name="email" required autocomplete="email">
+                                                <label class="form-check-label" for="remember">
+                                                    Remember Me
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <ul>
-                                        <li v-for="error in errors">{{ error }}</li>
-                                    </ul>
-                                </ValidationProvider>
 
-
-                                <ValidationProvider name="Password" :rules="{ required: true,  min: 3, max: 10 }" v-slot="{ errors }">
-                                    <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control" v-model="password" required autocomplete="current-password">
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-8 offset-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                               Login
+                                            </button>
                                         </div>
                                     </div>
-                                    <ul>
-                                        <li v-for="error in errors">{{ error }}</li>
-                                    </ul>
-                                </ValidationProvider>
-
-<!--                                    <div class="form-group row">-->
-<!--                                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>-->
-<!--                                        <div class="col-md-6">-->
-<!--                                            <input id="password" type="password" class="form-control" v-model="password" required autocomplete="current-password">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-
-
-
-
-                                <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
-
-                                            <label class="form-check-label" for="remember">
-                                                Remember Me
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                           Login
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
                             </ValidationObserver>
                         </div>
                     </div>
@@ -88,6 +73,7 @@
      //import { email , min } from 'vee-validate/dist/rules';
      import en from 'vee-validate/dist/locale/en.json';
      import * as rules from 'vee-validate/dist/rules';
+     import routes from "../routes";
 
      Vue.component('ValidationProvider', ValidationProvider);
      Vue.component('ValidationObserver', ValidationObserver);
@@ -113,24 +99,35 @@
          message: 'required'
      });
 
-     extend('max', {
-         validate(value) {
-             if (value.length <=  6) {
-                 return value.length
-             }
-         },
-         message: 'Max value 6'
+     extend('maxletter', email => {
+         if (email.length <= 25) {
+             return true;
+         }
+         return 'Max length 25 letters';
      });
 
      export default {
          data: () => ({
              email: '',
              password: '',
+             remember: ''
          }),
 
          methods: {
              onSubmit() {
-                 alert(1);
+                 axios.post('api/login', {
+                     email: this.email,
+                     password: this.password,
+                     remember: this.remember
+                 }).then(response => {
+                     if (response.data.login) {
+                         routes.push('/account')
+                     } else {
+                         alert('login or password put wrong')
+                     }
+                 }).catch(error => {
+
+                 })
              }
          }
      };
