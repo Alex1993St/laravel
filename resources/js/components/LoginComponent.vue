@@ -121,7 +121,8 @@
                      remember: this.remember
                  }).then(response => {
                      if (response.data.login) {
-                         routes.push('/account')
+                         localStorage.isLogin = 1;
+                         routes.push('/')
                      } else {
                          alert('login or password put wrong')
                      }

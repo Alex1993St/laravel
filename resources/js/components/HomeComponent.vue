@@ -7,7 +7,12 @@
 
 <script>
     export default {
-        name: "HomeComponent"
+        name: "HomeComponent",
+        data: () => {
+            return {
+
+            }
+        },
     }
 </script>
 

@@ -111,9 +111,9 @@
                         password_confirmation: this.confirmation,
                     }).then(response => {
                        if (response.data == 'success') {
-                          routes.push('/home');
+                           localStorage.isLogin = 1
+                           routes.push('/');
                        }
-                        // localStorage.setItem('login', true);
                     }).catch(error => {
                     })
                 }
