@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 Vue.component('menu-list', require('./components/MenuComponent').default);
+Vue.component('footer-list', require('./components/FooterComponent').default);
 
 import Login from './components/LoginComponent';
 import Home from './components/HomeComponent';

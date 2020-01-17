@@ -19,6 +19,7 @@
 $link_color: #000;
 $link_color_href: #e3342f;
 $block-max-height: 325px;
+$block-max-width: 300px;
 
 a {
     text-decoration: none;
@@ -115,4 +116,79 @@ a {
 
 .home-slider-img.active {
     display: block;
+}
+
+%home-block-rating-tab {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-rating {
+    @extend %home-block-rating-tab
+}
+
+.home-tab {
+    @extend %home-block-rating-tab
+
+}
+
+%home-block-rating-tab-info {
+    height: $block-max-height;
+    width: $block-max-width;
+    margin: 10px;
+    position: relative;
+}
+
+%home-block-rating-tab-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+%home-block-rating-tab-title {
+    height: 100%;
+    top: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.home-rating-link {
+    @extend %home-block-rating-tab-info;
+    img {
+        @extend %home-block-rating-tab-img
+    }
+    .home-rating-title {
+       @extend %home-block-rating-tab-title
+    }
+}
+
+.home-tab-link {
+    @extend %home-block-rating-tab-info;
+    img {
+        @extend %home-block-rating-tab-img
+    }
+    .home-tab-title {
+        @extend %home-block-rating-tab-title
+    }
+}
+
+.home-news-link {
+    display: flex;
+    flex-wrap: wrap;
+    img {
+        @extend %home-block-rating-tab-info
+    }
+    .home-news-info {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px;
+        flex-direction: column;
+    }
+
 }
