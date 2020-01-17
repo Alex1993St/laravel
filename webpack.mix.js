@@ -13,4 +13,5 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
+   .copy('resources/fonts/LongdonDecorative-5aPv.ttf', 'public/fonts/LongdonDecorative-5aPv.ttf')
    .browserSync(process.env.MIX_DOMAIN); // .env MIX_DOMAIN=http://my_domain
