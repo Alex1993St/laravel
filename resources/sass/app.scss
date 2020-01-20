@@ -192,3 +192,12 @@ a {
     }
 
 }
+
+//Page about
+.psb {
+    img {
+        height: $block-max-height;
+        width: $block-max-width;
+        margin-bottom: 10px;
+    }
+}

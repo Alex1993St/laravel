@@ -122,7 +122,7 @@
                  }).then(response => {
                      if (response.data.login) {
                          localStorage.isLogin = 1;
-                         routes.push('/')
+                         routes.push('/admin')
                      } else {
                          alert('login or password put wrong')
                      }

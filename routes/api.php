@@ -20,3 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
+
+
+Route::get('category', 'CategoryController@index');
+Route::post('category', 'CategoryController@store');
+Route::delete('category/{id}', 'CategoryController@destroy');

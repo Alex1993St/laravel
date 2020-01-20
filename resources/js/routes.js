@@ -13,7 +13,14 @@ import About from './components/AboutComponent';
 import Categories from './components/CategoriesComponent';
 import News from './components/NewsComponent';
 import Contacts from './components/ContactsComponent';
-import PageNotFound from './components/PageNotFoundComponent'
+import PageNotFound from './components/PageNotFoundComponent';
+
+// Admin
+import AdminHeader from './components/admin/HeaderComponent';
+import Admin from './components/admin/AdminComponent';
+import NewsAdmin from './components/admin/NewsAdminComponent';
+import CategoryAdmin from './components/admin/CategoryComponent';
+
 
 export default new VueRouter({
     routes: [
@@ -51,6 +58,23 @@ export default new VueRouter({
             path: '/register',
             name: 'register',
             component: Register
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: AdminHeader,
+            children: [
+                {
+                    path: '',
+                    component: Admin,
+                },{
+                    path: 'news',
+                    component: NewsAdmin
+                }, {
+                    path: 'category',
+                    component: CategoryAdmin
+                }
+            ],
         },
         {
             path: "*",

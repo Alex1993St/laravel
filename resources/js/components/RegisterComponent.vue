@@ -112,7 +112,7 @@
                     }).then(response => {
                        if (response.data == 'success') {
                            localStorage.isLogin = 1
-                           routes.push('/');
+                           routes.push('/admin');
                        }
                     }).catch(error => {
                     })
