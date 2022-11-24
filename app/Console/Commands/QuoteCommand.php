@@ -30,15 +30,11 @@ class QuoteCommand extends Command
      */
     public function handle(QuoteCreateAction $action)
     {
-        // php artisan command:create "Some text here"
         $request = new QuoteRequest([
             'description' => $this->argument('description')
         ]);
-        // TODO create validation
-//        $request->validate(
-//            $request->rules(),
-//            ['description' => $this->argument('description')],
-//        )
+
+        $request->validate($request->rules());
 
         $action(QuoteData::formRequest($request));
     }

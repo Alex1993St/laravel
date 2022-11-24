@@ -33,6 +33,7 @@ class SendSharedJob implements ShouldQueue
      */
     public function handle()
     {
+        sleep(rand(5, 20));
         app(SendSharedService::class)($this->data);
         app(QuoteICountIncreaseAction::class)(Quote::find($this->data['id']));
     }

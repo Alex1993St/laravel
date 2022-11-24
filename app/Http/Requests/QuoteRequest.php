@@ -23,9 +23,8 @@ class QuoteRequest extends FormRequest
      */
     public function rules()
     {
-        // TODO 'min:10' 'exists:quotes,description'
         return [
-            'description' => ['required', 'min:1']
+            'description' => ['required', 'min:10', 'unique:quotes,description']
         ];
     }
 }

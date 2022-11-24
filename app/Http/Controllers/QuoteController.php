@@ -14,8 +14,7 @@ class QuoteController extends Controller
 {
     public function index()
     {
-        // TODO after fix pagination style add 25 to paginate
-        $quotes = QuoteResource::collection(Quote::paginate(1));
+        $quotes = QuoteResource::collection(Quote::paginate(25));
         $socials = Social::get();
 
         return view('quote.index', compact('quotes', 'socials'));

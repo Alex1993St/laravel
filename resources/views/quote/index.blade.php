@@ -1,15 +1,4 @@
 @extends('layouts.app')
-@section('css')
-    <style>
-        .hide {
-            display: none;
-        }
-
-        .show {
-            display: block;
-        }
-    </style>
-@endsection
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -36,7 +25,7 @@
                                             </div>
                                             @if($quote->shared_count )
                                                 <div class="text-sm text-gray-700 dark:text-gray-500 underline">
-                                                    {{ __('Кол-во shared:') }} {{ $quote->shared_count }}
+                                                    <h3>{{ __('Поділились (кількість):') }} {{ $quote->shared_count }}</h3>
                                                 </div>
                                             @endif
                                             @auth
@@ -66,10 +55,9 @@
                                     </div>
                                     <hr/>
                                 @endforeach
-                                {{--                                TODO fix style pagination--}}
                                 <div
                                     class="container mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                                    {{ $quotes->links() }}
+                                    {!! $quotes->links("pagination::bootstrap-4") !!}
                                 </div>
                             </div>
                         </div>
