@@ -21,5 +21,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('quote', QuoteController::class)->except(['index','show', 'destroy']);
-    Route::post('/shared', [SharedController::class, 'shared'])->name('shared');
 });
+
+Route::post('/shared', [SharedController::class, 'shared'])->name('shared');
