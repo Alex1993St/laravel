@@ -17,7 +17,7 @@ class SocialSeeder extends Seeder
         $this->createSocial('Telegram', 'telegram');
         $this->createSocial('Viber', 'viber');
         $this->createSocial('Email', 'email');
-    }g
+    }
 
     private function createSocial(string $title, string $slug)
     {
