@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SharedController;
 use App\Http\Controllers\QuoteController;
 
 /*
@@ -20,6 +20,6 @@ Route::get('/', [QuoteController::class, 'index'])->name('quote.index');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('quote', QuoteController::class)->except(['index','show', 'destroy']);
+    Route::post('/shared', [SharedController::class, 'shared'])->name('shared');
 });

@@ -8,14 +8,17 @@ use App\DTO\QuoteData;
 use App\Http\Requests\QuoteRequest;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
+use App\Models\Social;
 
 class QuoteController extends Controller
 {
     public function index()
     {
-        $quotes = QuoteResource::collection(Quote::paginate(20));
+        // TODO after fix pagination style add 25 to paginate
+        $quotes = QuoteResource::collection(Quote::paginate(1));
+        $socials = Social::get();
 
-        return view('quote.index', compact('quotes'));
+        return view('quote.index', compact('quotes', 'socials'));
     }
 
     public function create()
