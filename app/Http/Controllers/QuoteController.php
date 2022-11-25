@@ -7,6 +7,7 @@ use App\Action\QuoteUpdateAction;
 use App\DTO\QuoteData;
 use App\Http\Requests\QuoteRequest;
 use App\Http\Resources\QuoteResource;
+use App\Http\Resources\SocialResource;
 use App\Models\Quote;
 use App\Models\Social;
 
@@ -15,7 +16,7 @@ class QuoteController extends Controller
     public function index()
     {
         $quotes = QuoteResource::collection(Quote::paginate(25));
-        $socials = Social::get();
+        $socials = SocialResource::collection(Social::get());
 
         return view('quote.index', compact('quotes', 'socials'));
     }

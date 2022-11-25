@@ -4,8 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Quote */
-class QuoteResource extends JsonResource
+/** @mixin \App\Models\Social */
+class SocialResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,8 @@ class QuoteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'description' => $this->description,
-            'shared_count' => $this->shared_count,
+            'title' => $this->title,
+            'slug' => $this->slug,
         ];
     }
 }
